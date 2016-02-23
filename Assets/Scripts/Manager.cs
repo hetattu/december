@@ -96,7 +96,7 @@ public class Manager : MonoBehaviour {
 
 	// 全ての設定をセット
 	public void Placement() {
-//		PlacementBackground ();
+		PlacementBackground ();
 		PlacementText ();
 		StartCoroutine ("PlacementText");
 	}
@@ -126,7 +126,7 @@ public class Manager : MonoBehaviour {
 	public void PlacementBackground() {
 		string number = CurrentNumber.ToString();
 		string textureName = (string)stageJsonData [number] ["bg"];
-		Texture2D texture = Resources.Load(textureName) as Texture2D;
+		Texture2D texture = Resources.Load("Image/"+textureName) as Texture2D;
 		Image img = GameObject.Find("Canvas/Background").GetComponent<Image>();
 		img.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
 	}
@@ -154,7 +154,7 @@ public class Manager : MonoBehaviour {
 
 	// テキストをjsonファイルからロードしてJsonDataへ格納
 	private void ReadTextData() {
-		TextAsset stageTextAsset = Resources.Load("story") as TextAsset;
+		TextAsset stageTextAsset = Resources.Load("Text/story") as TextAsset;
 		LitJson.JsonData json = LitJson.JsonMapper.ToObject(stageTextAsset.text);
 		stageJsonData = json ["story"];
 	}
